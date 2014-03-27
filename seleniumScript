@@ -12,13 +12,28 @@
 <tr><td rowspan="1" colspan="3">New Test</td></tr>
 </thead><tbody>
 <tr>
-	<td>click</td>
-	<td>link=OkCupid.com: Free Online Dating</td>
+	<td>open</td>
+	<td>http://www.okcupid.com</td>
 	<td></td>
 </tr>
 <tr>
 	<td>storeEval</td>
-	<td>0</td>
+	<td>window.document.getElementById(&quot;section_matches&quot;).getElementsByTagName(&quot;a&quot;)[0].getAttribute(&quot;href&quot;)</td>
+	<td>nextProfile</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>${nextProfile}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>60000</td>
+	<td>60000</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>count = 0</td>
 	<td>count</td>
 </tr>
 <tr>
@@ -32,19 +47,49 @@
 	<td></td>
 </tr>
 <tr>
-	<td>waitForPageToLoad</td>
-	<td>60000</td>
-	<td>60000</td>
-</tr>
-<tr>
 	<td>storeEval</td>
 	<td>window.document.getElementById(&quot;section_matches&quot;).getElementsByTagName(&quot;a&quot;)[0].getAttribute(&quot;href&quot;)</td>
 	<td>nextProfile</td>
 </tr>
 <tr>
+	<td>storeEval</td>
+	<td>window.document.getElementsByClassName('action_contents')[0].getElementsByClassName('name')[0].innerHTML;</td>
+	<td>profile</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${profile}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>(function() { var match; try{match = window.document.getElementsByClassName('match_percentage')[0].innerHTML;} catch(err){match = 0;} return match;})()</td>
+	<td>match</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${match}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://localhost:8888/profiles_OKC.php?w1=${profile}&amp;w2=${match}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>10000</td>
+	<td>10000</td>
+</tr>
+<tr>
 	<td>open</td>
 	<td>${nextProfile}</td>
 	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>60000</td>
+	<td>60000</td>
 </tr>
 <tr>
 	<td>storeEval</td>
